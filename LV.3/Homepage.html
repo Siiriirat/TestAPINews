@@ -85,10 +85,21 @@ footer {
   z-index: 10;
   height: 3em;
   margin-top: 5em;
-
 }
-
-
+.bt-btn {
+  display: inline-block;
+  color: #ffffff;
+  border: none;
+  padding: 0.5em;
+  width: 4em;
+  box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+  outline: none;
+  text-align: center;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+.bt-btn.edit       { background: #ff9334; }
+.bt-btn.delete     { background: #FF0000; }
 </style>
 
 </head>
@@ -112,17 +123,15 @@ $(function() {
 var dmJSON = "http://agile-cliffs-83142.herokuapp.com/api/news";
 $.getJSON( dmJSON, function(data) {
    $.each(data, function(i, f) {
-      var tblRow ="<div class='card'>" +  "<div class='container'>"+"<p class='title'>" +"Title : " + f.title + "</p>" +"<br>" +"<hr></hr>"+"<br>"+  "<p>" + "Detail : "+ f.detail + "</p>"+"<br><hr></hr>"+"<br>" +"</div>" +"<br>"+"</div>" +"<br>"
+      var tblRow ="<div class='card'>" +  "<div class='container'>"+"<p class='title'>" +"Title : "+ f.title + "</p>" +"<br>" +"<hr></hr>"+"<br>"+  "<p>" + "Detail : "+ f.detail + "</p>"+"<br><hr></hr>"+"<br>" +"</div>" +
+      "<div class='form-inline'>"+
+          "<a href='Update.html?id=' class='bt-btn edit' >Edit</a>"+
+          "<a href='#'  id='delete' data-id="+f.id+" class='bt-btn delete' >Delete</a>"
+       +"</div>"+"</div>"+"<br>"
        $(tblRow).appendTo("#entrydata");
  });
-
 });
-
 });
-
-
-
-
 </script>
      </body>
 </html>
